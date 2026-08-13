@@ -101,3 +101,63 @@
 .portrait-art figcaption{position:absolute;z-index:1;left:34px;right:34px;bottom:30px;margin:0;color:#fff;font:600 10px var(--ui);letter-spacing:.14em;text-transform:uppercase}
 .portrait-art figcaption span{position:static;padding-inline:7px;color:var(--gold-light)}
 @media(max-width:600px){.measurement-feature{height:460px;margin:45px -15px 0}.measurement-feature img{object-position:58% center}.portrait-art img{height:460px}.portrait-art{min-height:460px}}
+
+/* More expressive, still calm motion */
+.reveal{opacity:0;filter:blur(7px);transform:translateY(38px) scale(.985);transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1),filter .95s ease}
+.reveal.visible{opacity:1;filter:none;transform:none}
+.hero-copy.reveal{transform:translateX(-34px)}
+.hero-art.reveal{transform:translateX(34px) scale(.97)}
+.hero-copy.reveal.visible,.hero-art.reveal.visible{transform:none}
+.hero-art>img{animation:hero-breathe 10s ease-in-out infinite alternate}
+.measurement-feature img{animation:editorial-drift 14s ease-in-out infinite alternate;transform-origin:center}
+.portrait-art img{animation:portrait-drift 16s ease-in-out infinite alternate;transform-origin:center}
+.pulse-card{animation:card-float 4.2s ease-in-out infinite}
+.pulse-line{animation:pulse-soft 2.1s ease-in-out infinite}
+.hero-orbit{animation:orbit-drift 9s ease-in-out infinite alternate}
+.benefit:hover,.tech-card:hover,.location-card:hover{transform:translateY(-10px);box-shadow:0 18px 45px rgba(0,23,18,.08)}
+.price-card:hover{transform:translateY(-10px);box-shadow:0 28px 70px rgba(0,23,18,.14)}
+.price-card.popular:hover{transform:translateY(-25px)}
+.tech-card.featured:hover{transform:translateY(-28px)}
+@keyframes editorial-drift{from{transform:scale(1.015) translateX(-.6%)}to{transform:scale(1.075) translateX(.6%)}}
+@keyframes portrait-drift{from{transform:scale(1.01) translateY(0)}to{transform:scale(1.07) translateY(-1.2%)}}
+@media(max-width:900px){.price-card.popular:hover,.tech-card.featured:hover{transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.hero-copy.reveal,.hero-art.reveal,.measurement-feature img,.portrait-art img{animation:none;transform:none}.reveal{opacity:1;filter:none;transform:none}}
+
+/* Stránka ve výstavbě */
+.coming-soon-page{min-height:100vh;display:flex;flex-direction:column;background:var(--paper);overflow-x:hidden}
+.coming-soon-header{position:relative;z-index:5;padding:28px 0}
+.coming-soon-header .brand{width:max-content}
+.coming-soon-main{position:relative;display:flex;flex:1;align-items:center;min-height:670px;padding:40px 0 80px;overflow:hidden}
+.coming-soon-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(390px,.78fr);gap:9%;align-items:center}
+.coming-soon-copy{max-width:690px}
+.coming-soon-copy h1{margin:18px 0 28px;font-size:clamp(3.6rem,7vw,6.8rem);line-height:.93}
+.coming-soon-copy h1 em{display:block;color:var(--gold);font-weight:500}
+.coming-soon-copy .lead{max-width:610px}
+.coming-soon-divider{display:flex;align-items:center;width:190px;height:30px;margin:35px 0 22px}
+.coming-soon-divider:before,.coming-soon-divider:after{content:"";height:1px;flex:1;background:var(--gold)}
+.coming-soon-divider span{width:8px;height:8px;margin:0 13px;border:1px solid var(--gold);border-radius:50%}
+.coming-soon-note{color:var(--muted);font-size:15px}
+.coming-soon-art{position:relative;min-height:530px;border-radius:52% 52% 3px 3px;background:var(--forest);overflow:hidden}
+.coming-soon-art:after{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.05),transparent 42%,rgba(0,0,0,.14))}
+.coming-soon-sun{position:absolute;top:15%;left:17%;width:270px;height:270px;border:1px solid rgba(224,190,119,.65);border-radius:50%}
+.coming-soon-sun:before,.coming-soon-sun:after{content:"";position:absolute;border:1px solid rgba(224,190,119,.25);border-radius:50%}
+.coming-soon-sun:before{inset:25px}.coming-soon-sun:after{inset:60px}
+.coming-soon-leaf{position:absolute;width:150px;height:310px;border:1px solid rgba(224,190,119,.55);border-radius:100% 0 100% 0}
+.coming-soon-leaf:after{content:"";position:absolute;left:50%;top:8%;bottom:8%;width:1px;background:rgba(224,190,119,.42);transform:rotate(24deg)}
+.coming-soon-leaf-one{right:-20px;top:30px;transform:rotate(20deg)}
+.coming-soon-leaf-two{left:15px;bottom:-150px;transform:rotate(-45deg)}
+.coming-soon-card{position:absolute;z-index:2;right:0;bottom:48px;width:min(285px,80%);padding:30px;background:var(--paper);border-left:3px solid var(--gold)}
+.coming-soon-card span,.coming-soon-card small{display:block;font:600 10px var(--ui);letter-spacing:.12em;text-transform:uppercase}
+.coming-soon-card span{margin-bottom:10px;color:var(--gold)}
+.coming-soon-card strong{display:block;margin-bottom:8px;color:var(--forest);font:500 32px var(--serif)}
+.coming-soon-card small{color:var(--muted)}
+.coming-soon-orbit{position:absolute;border:1px solid rgba(182,138,60,.2);border-radius:50%;pointer-events:none}
+.coming-soon-orbit-one{width:520px;height:520px;left:-330px;bottom:-290px}
+.coming-soon-orbit-two{width:170px;height:170px;right:-75px;top:20px}
+.coming-soon-footer{position:relative;z-index:2;background:var(--forest-deep);color:#9fb2aa}
+.coming-soon-footer-inner{display:flex;justify-content:space-between;gap:25px;padding-top:22px;padding-bottom:22px;font:500 10px var(--ui);letter-spacing:.04em}
+.coming-soon-footer p{margin:0}
+@media(max-width:900px){.coming-soon-main{padding-top:20px}.coming-soon-grid{grid-template-columns:1fr;gap:65px}.coming-soon-copy{max-width:760px}.coming-soon-art{width:min(100%,570px);min-height:480px;margin-inline:auto}}
+@media(max-width:600px){.coming-soon-header{padding:20px 0}.coming-soon-main{align-items:flex-start;min-height:auto;padding:45px 0 70px}.coming-soon-grid{gap:50px}.coming-soon-copy h1{font-size:clamp(3.2rem,15vw,4.6rem)}.coming-soon-art{min-height:390px}.coming-soon-sun{width:215px;height:215px}.coming-soon-card{bottom:30px;padding:23px}.coming-soon-footer-inner{display:block}.coming-soon-footer p+p{margin-top:7px}}
+@media(prefers-reduced-motion:no-preference){.coming-soon-sun{animation:coming-soon-breathe 9s ease-in-out infinite alternate}.coming-soon-card{animation:card-float 5.5s ease-in-out infinite}}
+@keyframes coming-soon-breathe{from{transform:scale(.96)}to{transform:scale(1.04)}}
