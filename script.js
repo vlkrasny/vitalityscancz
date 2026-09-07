@@ -42,8 +42,12 @@ const setError = (id, message) => {
   return Boolean(message);
 };
 
-form?.addEventListener('submit', event => {
+// Keep native validation and POST available when JavaScript is disabled.
+if (form) form.noValidate = true;
+let submitting = false;
+form?.addEventListener('submit', async event => {
   event.preventDefault();
+  if (submitting) return;
   const nameInput = form.elements.namedItem('name');
   const phoneInput = form.elements.namedItem('phone');
   const emailInput = form.elements.namedItem('email');
@@ -53,7 +57,7 @@ form?.addEventListener('submit', event => {
     setError('name', nameInput.value.trim().length >= 3 ? '' : 'Doplňte prosím celé jméno.'),
     setError('phone', /^[+\d][\d\s-]{7,}$/.test(phoneInput.value.trim()) ? '' : 'Doplňte platné telefonní číslo.'),
     setError('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()) ? '' : 'Doplňte platný e-mail.'),
-    setError('privacy', privacyInput.checked ? '' : 'Pro odeslání je potřeba souhlas.')
+    setError('privacy', privacyInput.checked ? '' : 'Potvrďte prosím seznámení s informacemi o ochraně osobních údajů.')
   ];
   const status = document.getElementById('form-status');
   if (errors.some(Boolean)) {
@@ -61,7 +65,39 @@ form?.addEventListener('submit', event => {
     form.querySelector('[aria-invalid="true"]')?.focus();
     return;
   }
-  status.textContent = 'Formulář je správně vyplněný. Odesílání bude dostupné po propojení formulářové služby.';
+  const submitButton = form.querySelector('[type="submit"]');
+  const originalLabel = submitButton.textContent;
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 30000);
+  submitting = true;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Odesílám…';
+  form.setAttribute('aria-busy', 'true');
+  status.textContent = 'Odesílám vaši poptávku…';
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+      signal: controller.signal
+    });
+    if (!response.ok) {
+      status.textContent = response.status === 429
+        ? 'Služba nyní přijímá příliš mnoho požadavků. Vyčkejte prosím a zkuste odeslání později. Vyplněné údaje zůstaly zachované.'
+        : 'Poptávku se nepodařilo odeslat. Zkontrolujte údaje a zkuste to prosím později. Vyplněné údaje zůstaly zachované.';
+      return;
+    }
+    form.reset();
+    status.textContent = 'Děkujeme, vaše poptávka byla odeslána. Ozveme se vám s domluvou termínu. Termín zatím není rezervován.';
+  } catch (_) {
+    status.textContent = 'Odeslání se nepodařilo potvrdit. Zkontrolujte připojení. Vyplněné údaje zůstaly zachované; při opakovaném odeslání může vzniknout duplicitní poptávka.';
+  } finally {
+    window.clearTimeout(timeout);
+    submitting = false;
+    submitButton.disabled = false;
+    submitButton.textContent = originalLabel;
+    form.removeAttribute('aria-busy');
+  }
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
