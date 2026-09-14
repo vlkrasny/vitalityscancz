@@ -102,19 +102,6 @@
     <section class="section pricing" id="programy">
       <div class="container">
         <div class="section-heading narrow reveal"><p class="eyebrow">Programy a ceník</p><h2>Vyberte si péči, která vám dává smysl</h2><p>Každá návštěva zahrnuje osobní čas, interpretaci a doporučení. Ceny a podmínky čekají před spuštěním na finální potvrzení.</p></div>
-        <aside class="basic-offer" aria-labelledby="basic-offer-title" data-offer-end="2026-09-23T00:00:00+02:00">
-          <div>
-            <p class="eyebrow">Speciální nabídka · 8.–22. září 2026</p>
-            <h3 id="basic-offer-title">Basic zdarma</h3>
-            <p>Při zaučování nových kolegů nabízíme program Basic zdarma. Získáte orientační měření HRV, měření krevního tlaku, základní interpretaci a praktické doporučení.</p>
-            <p class="offer-details">Cena v rámci nabídky: <strong>0 Kč</strong> · přibližně 30 minut.<br>Nabídka platí do <time datetime="2026-09-23T00:00:00+02:00">22. září 2026 včetně</time> (českého času). Konkrétní termín potvrdíme po domluvě.</p>
-          </div>
-          <div class="offer-action">
-            <p class="offer-countdown" role="timer" aria-live="off" hidden></p>
-            <p class="offer-status" role="status"></p>
-            <a class="button select-plan" href="#objednani" data-plan="BASIC-ZDARMA">Mám zájem o Basic zdarma</a>
-          </div>
-        </aside>
         <div class="price-grid">
           <article class="price-card reveal"><p class="plan">Basic</p><p class="price">690 <small>Kč</small></p><p class="duration">cca 30 minut</p><ul><li>Orientační měření HRV</li><li>Krevní tlak</li><li>Základní interpretace</li><li>Praktické doporučení</li></ul><a class="button button-outline select-plan" href="#objednani" data-plan="BASIC">Vybrat Basic</a></article>
           <article class="price-card popular reveal"><p class="badge">Nejžádanější</p><p class="plan">Standard</p><p class="price">1 290 <small>Kč</small></p><p class="duration">45 minut</p><ul><li>Kompletní měření HRV</li><li>Tělesná kompozice</li><li>Krevní tlak</li><li>Detailní interpretace</li><li>Individuální doporučení</li></ul><a class="button select-plan" href="#objednani" data-plan="STANDARD">Vybrat Standard</a></article>
@@ -179,7 +166,7 @@
       <div class="container booking-shell">
         <div class="booking-copy reveal"><p class="eyebrow light">Objednání</p><h2>Udělejte první krok k lepšímu porozumění sobě</h2><p>Vyberte program a zanechte nám kontakt. Ozveme se vám s nabídkou termínu a přesnými instrukcemi.</p><div class="contact-placeholder"><span>Místa měření</span><strong>Skalná, Karlovy Vary a další místa po domluvě</strong></div></div>
         <form class="booking-form reveal" id="booking-form" action="https://formspree.io/f/xvkowoyw" method="post">
-          <div class="field"><label for="program">Program</label><select id="program" name="program" required><option value="">Vyberte program</option><option value="BASIC-ZDARMA">BASIC zdarma — zaučování kolegů (8.–22. 9. 2026)</option><option value="BASIC">BASIC — 690 Kč</option><option value="STANDARD">STANDARD — 1 290 Kč</option><option value="PREMIUM">PREMIUM — 1 990 Kč</option></select><span class="field-error" id="program-error"></span></div>
+          <div class="field"><label for="program">Program</label><select id="program" name="program" required><option value="">Vyberte program</option><option value="BASIC">BASIC — 690 Kč</option><option value="STANDARD">STANDARD — 1 290 Kč</option><option value="PREMIUM">PREMIUM — 1 990 Kč</option></select><span class="field-error" id="program-error"></span></div>
           <div class="field"><label for="location">Preferované místo</label><select id="location" name="location"><option value="">Domluvím se podle dostupnosti</option><option value="Skalná — Česká ulice">Skalná — Česká ulice</option><option value="Karlovy Vary — Vítězná ulice">Karlovy Vary — Vítězná ulice</option><option value="Jiné spolupracující místo">Jiné spolupracující místo</option></select></div>
           <div class="field-row"><div class="field"><label for="name">Jméno a příjmení</label><input id="name" name="name" type="text" autocomplete="name" required><span class="field-error" id="name-error"></span></div><div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel" required><span class="field-error" id="phone-error"></span></div></div>
           <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required><span class="field-error" id="email-error"></span></div>
