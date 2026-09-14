@@ -161,3 +161,15 @@
 @media(max-width:600px){.coming-soon-header{padding:20px 0}.coming-soon-main{align-items:flex-start;min-height:auto;padding:45px 0 70px}.coming-soon-grid{gap:50px}.coming-soon-copy h1{font-size:clamp(3.2rem,15vw,4.6rem)}.coming-soon-art{min-height:390px}.coming-soon-sun{width:215px;height:215px}.coming-soon-card{bottom:30px;padding:23px}.coming-soon-footer-inner{display:block}.coming-soon-footer p+p{margin-top:7px}}
 @media(prefers-reduced-motion:no-preference){.coming-soon-sun{animation:coming-soon-breathe 9s ease-in-out infinite alternate}.coming-soon-card{animation:card-float 5.5s ease-in-out infinite}}
 @keyframes coming-soon-breathe{from{transform:scale(.96)}to{transform:scale(1.04)}}
+
+.brand-logo{width:200px;height:auto}
+@media(max-width:600px){.brand-logo{width:170px}}
+
+/* Limited Basic offer; fixed dates remain readable without JavaScript. */
+.basic-offer{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;margin:0 0 55px;padding:40px;background:var(--cream);border:1px solid var(--gold);border-radius:4px}
+.basic-offer h3{font-size:clamp(2.4rem,5vw,3.5rem);margin-bottom:18px}
+.basic-offer p{max-width:65ch}.basic-offer .eyebrow{color:var(--forest)}
+.offer-details{font-size:14px;margin-bottom:0}.offer-action{min-width:0}.offer-action .button{width:100%;text-align:center;padding:15px}
+.offer-countdown{font:600 clamp(1.1rem,2.4vw,1.5rem)/1.6 var(--ui);font-variant-numeric:tabular-nums;color:var(--forest)}
+.offer-status:empty{display:none}.basic-offer [hidden]{display:none}
+@media(max-width:700px){.basic-offer{grid-template-columns:1fr;padding:26px 22px;gap:24px}}
