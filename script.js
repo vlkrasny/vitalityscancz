@@ -25,8 +25,36 @@ document.querySelectorAll('.faq-item button').forEach(button => {
 });
 
 const planSelect = document.getElementById('program');
+const basicOffer = document.querySelector('[data-offer-end]');
+const basicOfferEnd = basicOffer ? Date.parse(basicOffer.dataset.offerEnd) : 0;
+const basicOfferExpired = () => Date.now() >= basicOfferEnd;
+const updateBasicOffer = () => {
+  if (!basicOffer) return;
+  const timer = basicOffer.querySelector('[role="timer"]');
+  const expired = basicOfferExpired();
+  timer.hidden = expired;
+  if (expired) {
+    basicOffer.querySelector('.offer-status').textContent = 'Nabídka Basic zdarma již skončila. Vyberte si prosím některý z běžných programů.';
+    basicOffer.querySelector('.select-plan').hidden = true;
+    const option = planSelect.querySelector('[value="BASIC-ZDARMA"]');
+    if (planSelect.value === 'BASIC-ZDARMA') planSelect.value = '';
+    option?.remove();
+    return;
+  }
+  const seconds = Math.max(0, Math.ceil((basicOfferEnd - Date.now()) / 1000));
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor(seconds % 86400 / 3600);
+  const minutes = Math.floor(seconds % 3600 / 60);
+  timer.textContent = `Do konce nabídky: ${days} d · ${hours} h · ${minutes} min · ${seconds % 60} s`;
+};
+updateBasicOffer();
+const basicOfferInterval = window.setInterval(() => {
+  updateBasicOffer();
+  if (basicOfferExpired()) window.clearInterval(basicOfferInterval);
+}, 1000);
 document.querySelectorAll('.select-plan').forEach(link => {
   link.addEventListener('click', () => {
+    if (link.dataset.plan === 'BASIC-ZDARMA' && basicOfferExpired()) { updateBasicOffer(); return; }
     planSelect.value = link.dataset.plan;
     window.setTimeout(() => planSelect.focus({preventScroll:true}), 500);
   });
@@ -48,6 +76,13 @@ let submitting = false;
 form?.addEventListener('submit', async event => {
   event.preventDefault();
   if (submitting) return;
+  if (planSelect.value === 'BASIC-ZDARMA' && basicOfferExpired()) {
+    updateBasicOffer();
+    setError('program', 'Nabídka Basic zdarma již skončila. Vyberte prosím jiný program.');
+    document.getElementById('form-status').textContent = 'Nabídka již skončila. Ostatní vyplněné údaje zůstaly zachované.';
+    planSelect.focus();
+    return;
+  }
   const nameInput = form.elements.namedItem('name');
   const phoneInput = form.elements.namedItem('phone');
   const emailInput = form.elements.namedItem('email');
