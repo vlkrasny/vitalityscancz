@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="cs">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0c2d26">
   <title>Ochrana osobních údajů | VitalityScan</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link data-consent-fonts data-href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="consent.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#obsah">Přejít na hlavní obsah</a>
@@ -23,14 +24,36 @@
     <a class="legal-back" href="index.html">← Zpět na hlavní stránku</a>
     <p class="eyebrow">Právní informace</p><h1>Ochrana osobních údajů</h1>
     <p class="legal-lead">Informace o zpracování údajů při používání webu a odeslání poptávky.</p>
-    <div class="draft-notice"><strong>Pracovní návrh — není finálním právním dokumentem</strong> Před spuštěním je nutné doplnit správce, kontakt, poskytovatele hostingu, právní tituly a přesné doby uchování. Formulář je propojen se službou Formspree; tento návrh je nutné doplnit a právně schválit.</div>
-    <h2>1. Kdo je správcem</h2><p><strong>K doplnění před zveřejněním:</strong> úplné jméno nebo obchodní firma, IČO, sídlo či místo podnikání a kontaktní e-mail správce.</p>
-    <h2>2. Údaje z objednávkového formuláře</h2><p>Formulář obsahuje program, preferované místo, jméno, telefon, e-mail a nepovinnou poznámku. Do poznámky nevkládejte zdravotní údaje.</p><p>Po odeslání se vyplněné údaje a potvrzení seznámení s těmito informacemi předávají prostřednictvím služby Formspree k vyřízení poptávky a domluvě termínu. K doplnění a právnímu schválení zůstávají právní titul, úplné informace o příjemcích a případném předávání údajů do zahraničí, zabezpečení a konkrétní doba uchování.</p>
-    <h2>3. Technické údaje při návštěvě</h2><p>Poskytovatel produkčního hostingu může při běžném doručení stránky zpracovávat technické záznamy, například IP adresu, čas požadavku, typ prohlížeče a požadovanou adresu. Poskytovatel, účel, právní titul a doba uchování budou doplněny podle skutečně zvoleného hostingu.</p>
-    <h2>4. Cookies a externí služby</h2><p>Web používá technickou cookie a lokální úložiště pro zapamatování zavření cookie hlášky. Podrobnosti jsou v dokumentu <a href="cookies.html">Informace o cookies</a>. Stránka načítá písma Google Fonts; před produkčním spuštěním je nutné posoudit toto externí načítání nebo písma hostovat lokálně.</p>
-    <h2>5. Marketing</h2><p>Aktuální formulář neobsahuje marketingový souhlas a web nepoužívá marketingové ani analytické nástroje. Případné budoucí zasílání marketingových sdělení musí mít samostatný a nepovinný právní základ.</p>
-    <h2>6. Vaše práva</h2><p>Podle okolností můžete mít právo na přístup k údajům, opravu, výmaz, omezení zpracování, přenositelnost a vznést námitku. Je-li zpracování založeno na souhlasu, lze jej odvolat. Máte také právo podat stížnost u Úřadu pro ochranu osobních údajů. Konkrétní kontaktní cesta pro uplatnění práv bude doplněna spolu s identitou správce.</p>
-    <h2>7. Automatizované rozhodování a předávání</h2><p>V aktuální verzi neprobíhá automatizované rozhodování ani profilování. Případné předávání údajů mimo Evropský hospodářský prostor musí být před nasazením externích služeb posouzeno a popsáno.</p>
-    <p class="verification-note">Poslední aktualizace pracovního návrhu: 10. srpna 2026.</p>
+    <h2>1. Správce a kontakt</h2>
+    <p>Tyto informace se vztahují k webu <a href="https://vitalityscan.cz/">vitalityscan.cz</a> a jeho poptávkovému formuláři.</p>
+    <p>Správcem osobních údajů je <strong>Karolína Vítek Smíšková</strong>, IČO: <strong>87396181</strong>. Pro dotazy ke zpracování osobních údajů a uplatnění práv kontaktujte správce na <a href="mailto:karolinausmevava@gmail.com">karolinausmevava@gmail.com</a>.</p>
+    <p><strong>Sídlo:</strong> Družstevní 1482/6, 350 02 Cheb.</p>
+    <h2>2. Poptávkový formulář</h2>
+    <p>Při odeslání poptávky předáváte zvolený program, preferované místo, jméno a příjmení, telefon, e-mail, případnou poznámku a potvrzení seznámení s těmito informacemi. Údaje slouží k vyřízení poptávky a domluvě termínu. Odesláním nevzniká rezervace.</p>
+    <p>Poznámka je nepovinná a má limit 1 000 znaků. Nevkládejte do ní zdravotní údaje, diagnózy ani výsledky vyšetření. Formulář není určen ke shromažďování zdravotní dokumentace. Skryté pole slouží k základní ochraně proti automatizovanému spamu.</p>
+    <p>Potvrzení seznámení s informacemi není marketingový souhlas. Souhlas s externími písmy je samostatný a není podmínkou odeslání poptávky.</p>
+    <p>Ve využívaném tarifu Formspree Free je podle <a href="https://help.formspree.io/articles/account-management/account-limits">dokumentace poskytovatele</a> historie odeslaných poptávek uchovávána po dobu 30 dní. Tato lhůta se nevztahuje na kopie doručené do e-mailové schránky ani sama o sobě nepotvrzuje odstranění všech technických záznamů nebo záloh poskytovatele.</p>
+    <p>E-mailové kopie a navazující komunikaci k poptávkám, které nevedly k poskytnutí služby, uchováváme nejdéle 6 měsíců od poslední komunikace. Poté je správce ručně smaže. Nejde o automatické mazání zajišťované webem nebo tarifem Formspree.</p>
+    <p><strong>K doplnění provozovatelem:</strong> právní základ vyřízení poptávky a pravidla uchování komunikace k uskutečněným službám.</p>
+    <h2>3. Příjemci a externí služby</h2>
+    <h3>Formspree — zpracování poptávky</h3>
+    <p>Formulář posílá údaje přes HTTPS službě Formspree, Inc. až při odeslání. Formspree zajišťuje příjem formulářových dat a jejich předání k vyřízení; může zpracovávat také IP adresu, údaje o prohlížeči a čase požadavku pro provoz a zabezpečení služby. Více uvádí <a href="https://formspree.io/legal/privacy-policy/">zásady ochrany osobních údajů Formspree</a>.</p>
+    <h3>GitHub Pages — hosting webu</h3>
+    <p>Web běží na GitHub Pages. GitHub zaznamenává a uchovává IP adresy návštěvníků pro bezpečnostní účely, i když nejsou přihlášeni ke GitHubu. Podrobnosti obsahuje <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">dokumentace hostingu</a> a <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">zásady ochrany osobních údajů GitHub</a>.</p>
+    <h3>Google Fonts — volitelná písma</h3>
+    <p>Po udělení souhlasu s kategorií Externí obsah načítá prohlížeč písma od Google. Při spojení předává IP adresu a technické údaje požadavku. Bez souhlasu web používá systémová písma. Další informace poskytují <a href="https://fonts.google.com/faq">Google Fonts</a> a <a href="https://policies.google.com/privacy?hl=cs">zásady ochrany soukromí Google</a>.</p>
+    <h2>4. Uložení a změna souhlasu</h2>
+    <p>Volbu ukládáme do místního úložiště prohlížeče pod názvem <code>vitalityscan_consent</code>. Obsahuje povolené kategorie, verzi nastavení a časy uložení a konce platnosti. Volba platí 180 dní. Záznam se neposílá jako součást poptávky a neobsahuje jméno, e-mail ani telefon.</p>
+    <p>Souhlas lze kdykoli změnit nebo odvolat tlačítkem „Nastavení soukromí“. Odvolání zastaví další načítání externích písem; nemění zákonnost zpracování před odvoláním. Starý záznam může zůstat v úložišti do přepsání nebo vymazání, po vypršení však služby nepovoluje. Podrobnosti jsou na stránce <a href="cookies.html">Informace o cookies</a>.</p>
+    <h2>5. Předávání mimo Evropský hospodářský prostor</h2>
+    <p>Formspree ve svých zásadách uvádí infrastrukturu a zpracování v USA i dalších zemích. U použitých externích služeb proto nelze předpokládat, že údaje vždy zůstávají v Evropském hospodářském prostoru.</p>
+    <p><strong>K doplnění provozovatelem:</strong> konkrétní smluvní podmínky a záruky předávání odpovídající používaným účtům, další příjemci včetně poskytovatele e-mailu a způsob získání informací o těchto zárukách.</p>
+    <h2>6. Marketing a automatizované rozhodování</h2>
+    <p>Web nepoužívá analytické ani marketingové nástroje, reklamní pixely nebo profilování. Formulář neobsahuje přihlášení k marketingovým sdělením. Na webu neprobíhá automatizované rozhodování s právními nebo obdobně významnými účinky; ochrana formuláře může automaticky filtrovat spam.</p>
+    <h2>7. Vaše práva</h2>
+    <p>Za podmínek stanovených právními předpisy můžete požadovat přístup k údajům, opravu, výmaz, omezení zpracování nebo přenositelnost a vznést námitku. Je-li zpracování založeno na souhlasu, můžete jej odvolat. Svá práva můžete uplatnit e-mailem na <a href="mailto:karolinausmevava@gmail.com">karolinausmevava@gmail.com</a>.</p>
+    <p>Máte právo podat stížnost u <a href="https://uoou.gov.cz/">Úřadu pro ochranu osobních údajů</a>.</p>
+    <p class="verification-note">Poslední aktualizace: 16. září 2026.</p>
   </article></main>
+<div class="consent-footer"><button class="button button-small" type="button" data-consent-open hidden>Nastavení soukromí</button><noscript>Nepovinné služby jsou vypnuté. Nastavení souhlasu vyžaduje JavaScript.</noscript></div>
 </body></html>

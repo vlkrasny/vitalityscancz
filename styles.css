@@ -167,3 +167,16 @@
 .provider-portrait img{height:auto;aspect-ratio:4/5;object-fit:cover;animation:none;transform:none}
 .personal-motto{margin:0 0 28px;color:var(--forest);font:italic 500 clamp(1.25rem,2.5vw,1.65rem)/1.4 var(--serif)}
 @media(max-width:600px){.brand-logo{width:170px}}
+
+/* Equal prominence for acceptance and rejection. */
+.consent-footer{padding:20px;text-align:center;background:var(--paper)}
+.consent-panel{position:fixed;z-index:1000;bottom:16px;right:16px;width:min(560px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:24px;background:#fcf9f8;color:#1c1b1b;border:1px solid #717976;border-radius:4px;font:15px/1.5 var(--ui)}
+.consent-panel[hidden]{display:none}
+.consent-panel h2{font-size:26px;margin:0 0 12px}
+.consent-panel p{margin:0 0 12px}
+.consent-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.consent-actions .button{width:100%;min-height:48px;padding:12px;font-size:13px}
+.consent-panel summary{cursor:pointer;min-height:44px;padding:10px 0;text-decoration:underline}
+.consent-panel fieldset{margin:12px 0;padding:12px;border:1px solid #717976}
+.consent-panel label{display:flex;align-items:center;gap:10px;padding:10px 0}
+.consent-panel input{width:20px;height:20px;flex-shrink:0;accent-color:#0c2d26}

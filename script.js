@@ -51,12 +51,14 @@ form?.addEventListener('submit', async event => {
   const nameInput = form.elements.namedItem('name');
   const phoneInput = form.elements.namedItem('phone');
   const emailInput = form.elements.namedItem('email');
+  const noteInput = form.elements.namedItem('note');
   const privacyInput = document.getElementById('privacy');
   const errors = [
     setError('program', planSelect.value ? '' : 'Vyberte prosím program.'),
     setError('name', nameInput.value.trim().length >= 3 ? '' : 'Doplňte prosím celé jméno.'),
     setError('phone', /^[+\d][\d\s-]{7,}$/.test(phoneInput.value.trim()) ? '' : 'Doplňte platné telefonní číslo.'),
     setError('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()) ? '' : 'Doplňte platný e-mail.'),
+    setError('note', noteInput.value.length <= noteInput.maxLength ? '' : 'Poznámka může obsahovat maximálně 1 000 znaků.'),
     setError('privacy', privacyInput.checked ? '' : 'Potvrďte prosím seznámení s informacemi o ochraně osobních údajů.')
   ];
   const status = document.getElementById('form-status');
@@ -75,6 +77,9 @@ form?.addEventListener('submit', async event => {
   form.setAttribute('aria-busy', 'true');
   status.textContent = 'Odesílám vaši poptávku…';
   try {
+    // Keep _gotcha in FormData so Formspree can filter bots, including native POST.
+    // Notes are plain text. Any future CRM must escape them at the output sink;
+    // client-side filtering is not an XSS security boundary.
     const response = await fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
@@ -101,19 +106,6 @@ form?.addEventListener('submit', async event => {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
-
-const cookieNotice = document.getElementById('cookie-notice');
-const noticeStorageKey = 'vitalityscan_cookie_notice';
-let noticeStoredLocally = false;
-try { noticeStoredLocally = localStorage.getItem(noticeStorageKey) === 'ack'; } catch (_) { /* Storage may be unavailable. */ }
-const noticeStoredInCookie = document.cookie.split('; ').some(cookie => cookie.startsWith(`${noticeStorageKey}=`));
-const cookieAcknowledgement = noticeStoredLocally || noticeStoredInCookie;
-if (cookieNotice && !cookieAcknowledgement) cookieNotice.hidden = false;
-document.getElementById('cookie-acknowledge')?.addEventListener('click', () => {
-  try { localStorage.setItem(noticeStorageKey, 'ack'); } catch (_) { /* The cookie remains as a fallback. */ }
-  document.cookie = `${noticeStorageKey}=ack; Max-Age=15552000; Path=/; SameSite=Lax`;
-  cookieNotice.hidden = true;
-});
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (reducedMotion || !('IntersectionObserver' in window)) {

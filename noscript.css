@@ -1,0 +1,3 @@
+.reveal { opacity: 1; filter: none; transform: none; }
+.main-nav { display: flex; position: static; }
+.menu-toggle { display: none; }

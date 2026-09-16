@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="cs">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0c2d26">
   <title>Cookies | VitalityScan</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link data-consent-fonts data-href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="consent.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#obsah">Přejít na hlavní obsah</a>
@@ -23,14 +24,20 @@
     <a class="legal-back" href="index.html">← Zpět na hlavní stránku</a>
     <p class="eyebrow">Právní informace</p><h1>Informace o cookies</h1>
     <p class="legal-lead">Přehled toho, co tento web ukládá do vašeho prohlížeče a proč.</p>
-    <div class="draft-notice"><strong>Pracovní návrh — není finálním právním dokumentem</strong> Před zveřejněním je nutné doplnit identitu provozovatele a ověřit skutečné nastavení produkčního hostingu a všech externích služeb.</div>
-    <h2>Jaké cookies používáme</h2>
-    <p>V aktuální statické verzi používáme pouze níže uvedený technický záznam. Neslouží ke sledování návštěvnosti, profilování ani reklamě.</p>
-    <table class="legal-table"><thead><tr><th>Název</th><th>Účel</th><th>Doba uložení</th><th>Typ</th></tr></thead><tbody><tr><td><code>vitalityscan_cookie_notice</code></td><td>Zapamatuje si, že jste zavřeli informační hlášku, aby se nezobrazovala při každé návštěvě.</td><td>Cookie: 6 měsíců. Lokální úložiště: do vymazání dat webu.</td><td>Technická cookie a lokální úložiště, první strana</td></tr></tbody></table>
-    <h2>Co nepoužíváme</h2><p>Web v této podobě nepoužívá analytické ani marketingové cookies, reklamní pixely ani nástroje pro profilování návštěvníků.</p>
-    <h2>Jak záznam odstranit</h2><p>Cookie i lokální záznam můžete kdykoli odstranit vymazáním dat tohoto webu v nastavení prohlížeče. Poté se při další návštěvě informační hláška zobrazí znovu.</p>
-    <h2>Externí obsah a hosting</h2><p>Stránka načítá webová písma ze služby Google Fonts. Produkční hosting může vést technické serverové záznamy, například IP adresu, čas požadavku a požadovanou adresu. Konkrétní poskytovatel hostingu, rozsah záznamů a doby uchování musí být před spuštěním doplněny a ověřeny.</p>
-    <h2>Změny používání cookies</h2><p>Pokud budou později přidány analytické nebo marketingové nástroje, musí být nejprve aktualizována tato informace a zavedena odpovídající volba souhlasu před jejich aktivací.</p>
-    <p class="verification-note">Poslední aktualizace pracovního návrhu: 10. srpna 2026.</p>
+    <p>Provozovatelka: <strong>Karolína Vítek Smíšková</strong>, IČO: <strong>87396181</strong>, sídlo: Družstevní 1482/6, 350 02 Cheb. Kontakt pro otázky týkající se soukromí: <a href="mailto:karolinausmevava@gmail.com">karolinausmevava@gmail.com</a>. Další informace jsou na stránce <a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>.</p>
+    <h2>Nezbytné úložiště</h2>
+    <p>Volbu kategorií ukládáme v prohlížeči do localStorage pod názvem <code>vitalityscan_consent</code>. Záznam obsahuje verzi nastavení, čas volby, dobu platnosti a povolené kategorie. Souhlas i odmítnutí respektujeme 180 dní; poté požádáme o novou volbu. Starší neplatný záznam může v úložišti zůstat do přepsání nebo vymazání dat webu, nepovoluje však služby.</p>
+    <h2>Volitelné kategorie</h2>
+    <p><strong>Externí obsah — Google Fonts:</strong> pouze po souhlasu načteme písma ze serverů Google. Při spojení Google obdrží IP adresu a technické údaje požadavku. Bez souhlasu zůstávají systémová písma. Tato volba řídí externí spojení. Podrobnosti uvádí <a href="https://fonts.google.com/faq">Google Fonts</a> a <a href="https://policies.google.com/privacy?hl=cs">zásady ochrany soukromí Google</a>.</p>
+    <p><strong>Analytika a marketing:</strong> tyto služby ani jejich cookies nepoužíváme. Kategorie jsou neaktivní a souhlas k budoucím, dosud neurčeným službám nesbíráme.</p>
+    <h2>Změna a odvolání volby</h2>
+    <p>Tlačítkem „Nastavení soukromí“ na každé stránce můžete kdykoli změnit kategorie nebo zvolit „Odmítnout“. Tím se deaktivuje načítání externích písem; již uskutečněné předání údajů nelze vzít zpět. „Přijmout“ povolí aktuálně dostupnou volitelnou kategorii, „Uložit nastavení“ pouze vámi vybrané kategorie. Bez JavaScriptu se nepovinné služby nenačítají.</p>
+    <p>Záznam lze odstranit také vymazáním dat webu v prohlížeči. Pokud je ukládání blokované, volba platí jen na aktuální stránce. Původní záznam <code>vitalityscan_cookie_notice</code> odstraňujeme a nepovažujeme jej za souhlas.</p>
+    <h2>Formulář a hosting</h2>
+    <p>Formspree kontaktujeme až při odeslání poptávky, nezávisle na volbě písem. Informace o zpracování poptávky jsou v <a href="ochrana-osobnich-udaju.html">ochraně osobních údajů</a>. Web hostuje GitHub Pages. GitHub při návštěvě zaznamenává IP adresu pro bezpečnostní účely, jak uvádí <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">dokumentace GitHub Pages</a>. Toto zpracování není řízeno volbou externích písem.</p>
+    <h2>Budoucí změny</h2>
+    <p>Přidání analytiky, marketingu nebo jiné služby vyžaduje aktualizaci informací, její napojení na příslušný souhlas a novou verzi nastavení. Stávající souhlas takovou službu nepovoluje.</p>
+    <p class="verification-note">Poslední aktualizace: 16. září 2026.</p>
   </article></main>
+<div class="consent-footer"><button class="button button-small" type="button" data-consent-open hidden>Nastavení soukromí</button><noscript>Nepovinné služby jsou vypnuté. Nastavení souhlasu vyžaduje JavaScript.</noscript></div>
 </body></html>

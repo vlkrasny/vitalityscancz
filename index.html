@@ -1,24 +1,25 @@
 <!doctype html>
 <html lang="cs">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Trápí vás únava nebo hledáte životní rovnováhu? Objevte příčiny pomocí moderní technologie Vitality Scan. Udělejte první krok ke zdravějšímu životu.">
   <meta name="keywords" content="vitalityscan, VitalityScan, wellness, orientační měření vitality, HRV, stres, regenerace, tělesná kompozice, krevní tlak, Skalná, Karlovy Vary">
   <meta name="theme-color" content="#0c2d26">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23fcf9f8' stroke='%23b68a3c' stroke-width='2'/%3E%3Cpath d='M18 19h9l5 25 7-25h8L36 50h-9z' fill='%230c2d26'/%3E%3C/svg%3E">
   <title>VitalityScan: Komplexní analýza zdraví a životní rovnováha</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link data-consent-fonts data-href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
-  <noscript><style>.reveal{opacity:1;filter:none;transform:none}.main-nav{display:flex;position:static}.menu-toggle{display:none}</style></noscript>
+  <noscript><link rel="stylesheet" href="noscript.css"></noscript>
+  <script src="consent.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#obsah">Přejít na hlavní obsah</a>
@@ -166,11 +167,12 @@
       <div class="container booking-shell">
         <div class="booking-copy reveal"><p class="eyebrow light">Objednání</p><h2>Udělejte první krok k lepšímu porozumění sobě</h2><p>Vyberte program a zanechte nám kontakt. Ozveme se vám s nabídkou termínu a přesnými instrukcemi.</p><div class="contact-placeholder"><span>Místa měření</span><strong>Skalná, Karlovy Vary a další místa po domluvě</strong></div></div>
         <form class="booking-form reveal" id="booking-form" action="https://formspree.io/f/xvkowoyw" method="post">
+          <div hidden aria-hidden="true"><label for="gotcha">Toto pole nevyplňujte</label><input id="gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="field"><label for="program">Program</label><select id="program" name="program" required><option value="">Vyberte program</option><option value="BASIC">BASIC — 690 Kč</option><option value="STANDARD">STANDARD — 1 290 Kč</option><option value="PREMIUM">PREMIUM — 1 990 Kč</option></select><span class="field-error" id="program-error"></span></div>
           <div class="field"><label for="location">Preferované místo</label><select id="location" name="location"><option value="">Domluvím se podle dostupnosti</option><option value="Skalná — Česká ulice">Skalná — Česká ulice</option><option value="Karlovy Vary — Vítězná ulice">Karlovy Vary — Vítězná ulice</option><option value="Jiné spolupracující místo">Jiné spolupracující místo</option></select></div>
           <div class="field-row"><div class="field"><label for="name">Jméno a příjmení</label><input id="name" name="name" type="text" autocomplete="name" required><span class="field-error" id="name-error"></span></div><div class="field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel" required><span class="field-error" id="phone-error"></span></div></div>
           <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required><span class="field-error" id="email-error"></span></div>
-          <div class="field"><label for="note">Poznámka <span>(neuvádějte zdravotní údaje)</span></label><textarea id="note" name="note" rows="3"></textarea></div>
+          <div class="field"><label for="note">Poznámka <span>(neuvádějte zdravotní údaje; maximálně 1 000 znaků)</span></label><textarea id="note" name="note" rows="3" maxlength="1000" aria-describedby="note-error"></textarea><span class="field-error" id="note-error"></span></div>
           <label class="check"><input type="checkbox" id="privacy" name="privacy" value="Seznámení s informacemi potvrzeno" required><span>Seznámil/a jsem se s <a href="ochrana-osobnich-udaju.html" target="_blank">informacemi o ochraně osobních údajů</a> pro vyřízení poptávky.</span></label><span class="field-error" id="privacy-error"></span>
           <button class="button" type="submit">Odeslat nezávaznou poptávku</button>
           <p class="form-note">Poptávku odesíláme prostřednictvím služby Formspree. Odesláním nevzniká rezervace termínu.</p>
@@ -184,13 +186,6 @@
     <div class="container footer-grid"><div><a class="brand footer-brand" href="#uvod"><img class="brand-logo" src="assets/images/logo-vitalityscan-uvod.png" alt="VitalityScan" width="2123" height="741"></a><p>Orientační pohled na vitalitu s lidskou interpretací.</p></div><div><h2>Prozkoumat</h2><a href="#jak-to-funguje">Jak to funguje</a><a href="#programy">Programy</a><a href="#mista">Místa měření</a><a href="#bezpecnost">Bezpečnost</a></div><div><h2>Právní informace</h2><a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a><a href="cookies.html">Cookies</a></div></div>
     <div class="container footer-bottom"><p>© <span id="year"></span> VitalityScan. Všechna práva vyhrazena.</p><p>Wellness a orientační služba. Nenahrazuje lékařskou péči.</p><p><a class="footer-credit" href="https://vlkrasny.cz" target="_blank" rel="noopener noreferrer">made by <span aria-hidden="true">❤️</span><span class="sr-only">s láskou</span> vlkrasny</a></p></div>
   </footer>
-  <aside class="cookie-notice" id="cookie-notice" aria-labelledby="cookie-title" hidden>
-    <div>
-      <h2 id="cookie-title">Cookies na tomto webu</h2>
-      <p>V prohlížeči ukládáme pouze technický záznam, který si pamatuje zavření této hlášky. Analytické ani marketingové cookies nepoužíváme.</p>
-      <a href="cookies.html">Podrobnosti o cookies</a>
-    </div>
-    <button class="button button-small" type="button" id="cookie-acknowledge">Rozumím</button>
-  </aside>
+<div class="consent-footer"><button class="button button-small" type="button" data-consent-open hidden>Nastavení soukromí</button><noscript>Nepovinné služby jsou vypnuté. Nastavení souhlasu vyžaduje JavaScript.</noscript></div>
 </body>
 </html>
