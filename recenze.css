@@ -1,0 +1,43 @@
+/* Samostatná stránka recenzí využívá společné tokeny Botanical Heritage. */
+.reviews-page .header-inner{gap:24px}
+.reviews-nav{display:flex;align-items:center;gap:28px;font:600 12px var(--ui)}
+.reviews-nav a{text-decoration:none;padding-block:14px}
+.reviews-nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:8px}
+.reviews-hero{position:relative;overflow:hidden;padding:90px 0 0;background:var(--cream);text-align:center}
+.reviews-hero:before,.reviews-hero:after{content:"";position:absolute;width:220px;height:400px;border:1px solid var(--line);border-radius:100% 0 100% 0;pointer-events:none}
+.reviews-hero:before{left:-150px;top:20px;transform:rotate(20deg)}
+.reviews-hero:after{right:-140px;bottom:0;transform:rotate(200deg)}
+.reviews-hero h1{font-size:clamp(3.3rem,6.5vw,6rem);line-height:1.02;margin:22px 0 26px}
+.reviews-hero h1 em{color:var(--sage);font-weight:500}
+.reviews-hero .lead{max-width:660px;margin:0 auto 26px}
+.reviews-hero .text-link{display:inline-block;padding:12px 0}
+.reviews-values{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:1px solid var(--line);font:600 12px var(--ui);color:var(--forest)}
+.reviews-values span{padding:26px 12px}
+.reviews-values span+span{border-left:1px solid var(--line)}
+.reviews-notice{margin:0 0 32px;padding:20px 24px;border-left:2px solid var(--gold);background:var(--cream);color:var(--muted);font-size:14px}
+.reviews-notice strong{color:var(--forest)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.review-card{background:var(--cream);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.review-card figure{margin:0;position:relative}
+.review-card img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.review-card figcaption{position:absolute;bottom:12px;left:12px;padding:7px 10px;background:var(--paper);color:var(--forest);font:500 11px var(--ui)}
+.review-copy{padding:30px;display:flex;flex:1;flex-direction:column}
+.review-copy h3{font-size:30px;line-height:1.15;margin:16px 0}
+.review-copy>p:not(.card-label){color:var(--muted);font-size:15px}
+.review-status{margin-top:auto;padding-top:24px;border-top:1px solid var(--line);color:var(--sage);font:600 11px/1.5 var(--ui)}
+.reviews-approach{background:var(--cream)}
+.reviews-approach .section-heading{max-width:700px}
+.reviews-invitation{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;padding:64px;background:var(--forest);color:var(--cream)}
+.reviews-invitation h2{color:var(--paper);font-size:clamp(2.6rem,4vw,4rem);line-height:1.08}
+.reviews-invitation .eyebrow{color:var(--gold-light)}
+.reviews-invitation p:not(.eyebrow){max-width:560px;color:#dfe9e4}
+.reviews-actions{display:flex;flex-direction:column;align-items:center;gap:24px}
+.reviews-actions .button{background:var(--cream);border-color:var(--cream);color:var(--forest)}
+.reviews-actions .text-link{color:var(--cream);padding:12px 0}
+.reviews-disclaimer{max-width:850px;margin:32px auto 0;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:900px){.reviews-page .header-inner{flex-wrap:wrap;justify-content:center;padding-block:16px}.reviews-page .site-header{position:relative}.reviews-nav{flex-wrap:wrap;justify-content:center;gap:8px 22px}.reviews-grid{grid-template-columns:1fr;max-width:570px;margin-inline:auto}.review-card img{aspect-ratio:6/5;object-position:center 35%}.reviews-invitation{grid-template-columns:1fr;padding:40px}.reviews-actions{align-items:flex-start}.reviews-hero{padding-top:60px}}
+@media(max-width:600px){.reviews-nav{font-size:11px;gap:8px 18px}.reviews-nav .button{padding-inline:18px}.reviews-hero h1{font-size:3.2rem}.reviews-values{grid-template-columns:1fr;margin-top:40px}.reviews-values span{padding:18px}.reviews-values span+span{border-left:0;border-top:1px solid var(--line)}.review-copy{padding:25px}.reviews-invitation{padding:32px 24px;gap:24px}.reviews-notice{padding:18px}.reviews-actions{align-items:stretch}.reviews-actions .text-link{text-align:center}}
+.reviews-hero h1 em{display:inline}
+.reviews-page .eyebrow{color:var(--sage)}
+.reviews-invitation .eyebrow{color:var(--gold-light)}
+.reviews-page .benefit>span{color:var(--sage)}
