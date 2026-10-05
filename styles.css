@@ -186,3 +186,6 @@
 .footer-grid .footer-social a{display:inline-flex;align-items:center;gap:9px;min-height:44px;margin:0;color:var(--gold-light)}
 .footer-social svg{flex:0 0 20px}
 .footer-grid .footer-social a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.footer-support{margin:22px 0 0}
+.footer-grid .footer-support a{display:inline-flex;align-items:center;gap:12px;min-height:48px;margin:0;padding:12px 16px;border:1px solid var(--gold-light);border-radius:4px;color:var(--gold-light);font-size:13px;line-height:1.5;text-decoration:none}
+.footer-support svg{flex:0 0 20px}.footer-support strong{display:block;font-size:16px}.footer-grid .footer-support a:hover{color:#fff;border-color:#fff}
