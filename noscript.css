@@ -1,3 +1,8 @@
-.reveal { opacity: 1; filter: none; transform: none; }
-.main-nav { display: flex; position: static; }
-.menu-toggle { display: none; }
+/* Content remains readable even if JavaScript fails to load or stops early. */
+.reveal, .hero-copy.reveal, .hero-art.reveal { opacity: 1; filter: none; transform: none; }
+html:not(.interactions-ready) .menu-toggle { display: none; }
+html:not(.interactions-ready) .main-nav { display: flex; position: static; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  html:not(.interactions-ready) .header-inner { flex-wrap: wrap; }
+  html:not(.interactions-ready) .main-nav { width: 100%; box-shadow: none; }
+}

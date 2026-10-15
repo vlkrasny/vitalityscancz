@@ -16,6 +16,7 @@ nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => 
 }));
 
 document.querySelectorAll('.faq-item button').forEach(button => {
+  document.getElementById(button.getAttribute('aria-controls')).hidden = true;
   button.addEventListener('click', () => {
     const expanded = button.getAttribute('aria-expanded') === 'true';
     const panel = document.getElementById(button.getAttribute('aria-controls'));
@@ -23,6 +24,9 @@ document.querySelectorAll('.faq-item button').forEach(button => {
     panel.hidden = expanded;
   });
 });
+
+// Enable the collapsed mobile navigation only after its handlers are attached.
+document.documentElement.classList.add('interactions-ready');
 
 const planSelect = document.getElementById('program');
 document.querySelectorAll('.select-plan').forEach(link => {
