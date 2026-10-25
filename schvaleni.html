@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src 'self' https://rtkzfhqyodbiztkrsvik.supabase.co; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <title>Schvalování recenzí | VitalityScan</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="recenze.css">
+  <link rel="stylesheet" href="schvaleni.css">
+  <script src="reviews-config.js" defer></script>
+  <script src="review-photos.js" defer></script>
+  <script src="schvaleni.js" defer></script>
+</head>
+<body class="reviews-page moderation-page">
+  <a class="skip-link" href="#obsah">Přejít na hlavní obsah</a>
+  <header class="site-header"><div class="container header-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/images/logo-vitalityscan-uvod.png" alt="VitalityScan — úvod" width="2123" height="741"></a>
+    <nav class="reviews-nav" aria-label="Navigace"><a href="recenze.html">Veřejné recenze</a></nav>
+  </div></header>
+  <main id="obsah" class="container section">
+    <p class="eyebrow">Správa zkušeností klientů</p>
+    <h1>Schvalování recenzí</h1>
+    <p id="admin-message" role="status" tabindex="-1"></p>
+    <noscript><p>Přihlášení a schvalování vyžaduje JavaScript. Bez něj se údaje neodesílají.</p></noscript>
+    <section id="login-panel" class="review-form-wrap" aria-labelledby="login-title">
+      <h2 id="login-title">Přihlášení správce</h2>
+      <p>Použijte e-mail a heslo svého účtu Supabase Auth. Účet musí mít přidělené oprávnění ke schvalování.</p>
+      <form id="admin-login">
+        <fieldset id="login-fields" disabled>
+          <legend class="sr-only">Přihlašovací údaje</legend>
+          <label for="admin-email">E-mail</label><input id="admin-email" type="email" autocomplete="username" required maxlength="254">
+          <label for="admin-password">Heslo</label><input id="admin-password" type="password" autocomplete="current-password" required>
+          <button class="button" type="submit">Přihlásit se</button>
+        </fieldset>
+      </form>
+      <p>Přihlášení platí pouze do obnovení nebo zavření této stránky, nejdéle do vypršení relace.</p>
+    </section>
+    <section id="moderation-panel" hidden aria-labelledby="queue-title">
+      <div class="moderation-toolbar"><h2 id="queue-title" tabindex="-1">Přehled recenzí</h2><button id="admin-logout" type="button" class="button">Odhlásit se</button></div>
+      <p>Před schválením ověřte souhlas a obsah. Nezveřejňujte zdravotní údaje, zdravotní sliby ani údaje dalších osob. Odeslání recenze samo nepotvrzuje návštěvu.</p>
+      <div class="moderation-toolbar"><div><label for="status-filter">Stav recenzí</label><select id="status-filter"><option value="pending">Čekají na schválení</option><option value="approved">Schválené</option><option value="rejected">Zamítnuté</option></select></div><button id="admin-reload" type="button" class="button">Obnovit seznam</button></div>
+      <p id="queue-state" role="status"></p>
+      <div id="moderation-list" class="moderation-list"></div>
+      <button id="admin-more" class="button" type="button" hidden>Další recenze</button>
+    </section>
+  </main>
+</body>
+</html>
