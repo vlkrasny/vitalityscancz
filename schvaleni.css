@@ -1,0 +1,17 @@
+.moderation-page h1{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:32px}
+.moderation-page main{max-width:1050px}
+.moderation-page .review-form-wrap{margin:32px 0}
+.moderation-page fieldset{border:0;padding:0;margin:0;min-width:0}
+#admin-login .button{margin-top:24px}
+.moderation-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin:32px 0}
+.moderation-toolbar label{display:block;font:600 14px var(--ui);margin-bottom:8px}
+.moderation-toolbar select{padding:12px;max-width:100%;background:var(--cream);color:var(--forest);font:inherit;border:1px solid var(--sage);border-radius:4px}
+.moderation-list{display:grid;gap:24px;margin:24px 0}
+.moderation-card{padding:28px;background:var(--cream);border-radius:4px;overflow-wrap:anywhere}
+.moderation-card h3{margin:0 0 16px;font-size:28px}
+.moderation-card .review-text{margin-block:24px}
+.moderation-actions{display:flex;flex-wrap:wrap;gap:12px}
+.moderation-meta{font:500 13px/1.7 var(--ui);color:var(--muted)}
+.moderation-page :focus-visible,#admin-message:focus,#queue-title:focus{outline:3px solid var(--forest);outline-offset:4px}
+.moderation-page button:disabled{opacity:.65;cursor:wait}
+@media(max-width:600px){.moderation-card{padding:20px}.moderation-actions .button{width:100%}.moderation-toolbar{align-items:flex-start}}
