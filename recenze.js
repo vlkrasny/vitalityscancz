@@ -12,6 +12,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const notice = document.getElementById('review-configuration');
   const photos = window.ReviewPhotos.createUploader(form);
   const submit = document.getElementById('review-submit');
+  const protection = window.ReviewAntispam;
+  const intakeReady = /^[A-Za-z0-9_-]{10,100}$/.test(config.turnstileSiteKey || '');
   let photoAttempt = null;
   const ratingGroup = document.getElementById('review-rating');
   const stars = [...ratingGroup.querySelectorAll('.rating-star')];
@@ -50,7 +52,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   async function request(url, options = {}) {
     const response = await fetch(url, {
       ...options, credentials: 'omit', referrerPolicy: 'no-referrer',
-      signal: AbortSignal.timeout(15000)
+      signal: AbortSignal.timeout(options.method === 'POST' ? 60000 : 15000)
     });
     if (!response.ok) {
       const error = new Error('Request failed'); error.status = response.status;
@@ -118,6 +120,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (sending) return;
     if (photos.processing) { result.textContent = 'Počkejte prosím na dokončení přípravy fotografií.'; result.focus(); return; }
     if (!validate() || !photos.validate()) return;
+    if (!intakeReady || !protection.token) {
+      const message = document.getElementById('review-verification-status');
+      message.textContent = 'Před odesláním dokončete ověření proti spamu.';
+      message.focus(); return;
+    }
     sending = true;
     const payload = {
       display_name: form.elements.display_name.value.trim(),
@@ -131,45 +138,38 @@ document.getElementById('year').textContent = new Date().getFullYear();
     form.setAttribute('aria-busy', 'true');
     result.textContent = 'Odesíláme recenzi…';
     try {
-      if (photos.count || photoAttempt) {
-        // Stejný náhodný identifikátor při opakování zabrání duplicitě po výpadku.
-        photoAttempt ||= {
-          payload: { ...payload, id: crypto.randomUUID(), photo_count: photos.count, photo_consent: true },
-          blobs: photos.blobs, created: false, next: 0
-        };
-        if (!photoAttempt.created) {
-          try {
-            await request(endpoint, { method: 'POST', headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify(photoAttempt.payload) });
-          } catch (error) { if (error.status !== 409) throw error; }
-          photoAttempt.created = true;
-        }
-        for (; photoAttempt.next < photoAttempt.blobs.length; photoAttempt.next++) {
-          result.textContent = 'Nahráváme fotografii ' + (photoAttempt.next + 1) + ' z ' + photoAttempt.blobs.length + '…';
-          try {
-            await request(config.url + window.ReviewPhotos.bucket + photoAttempt.payload.id + '/' + (photoAttempt.next + 1) + '.jpg', {
-              method: 'POST', headers: { ...headers, 'Content-Type': 'image/jpeg', 'x-upsert': 'false', 'cache-control': 'no-store' }, body: photoAttempt.blobs[photoAttempt.next]
-            });
-          } catch (error) {
-            if (error.status !== 409 && error.code !== 'Duplicate' && error.code !== 'ResourceAlreadyExists') throw error;
-          }
-        }
-        photoAttempt = null;
-      } else {
-        await request(endpoint, {
-          method: 'POST', headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify(payload)
-        });
-      }
+      // Náhodné tajemství pokusu zůstává jen v paměti. Opakování nemění obsah.
+      photoAttempt ||= {
+        payload: { ...payload, id: crypto.randomUUID(), photo_count: photos.count, photo_consent: photos.count > 0 },
+        receipt: crypto.randomUUID(), blobs: photos.blobs
+      };
+      const data = new FormData();
+      data.set('review', JSON.stringify(photoAttempt.payload));
+      data.set('receipt', photoAttempt.receipt);
+      data.set('captcha', protection.token);
+      photoAttempt.blobs.forEach((blob, index) => data.append('photos', blob, (index + 1) + '.jpg'));
+      const response = await request(config.url + '/functions/v1/submit-review', {
+        method: 'POST', headers, body: data
+      });
+      if ((await response.json()).ok !== true) throw new Error('Invalid receipt');
+      photoAttempt = null;
       form.reset();
       photos.reset();
       updateRating();
       result.textContent = 'Děkujeme. Recenze byla přijata a čeká na schválení. Zatím není veřejná.';
-    } catch {
-      result.textContent = photoAttempt ? 'Odeslání recenze s fotografiemi se nepodařilo dokončit. Klikněte na Dokončit odeslání. Tento pokus zůstává uzamčený a zopakuje se bez vytvoření další recenze. Obnovením stránky ztratíte možnost dokončit tento pokus.' : 'Přijetí recenze se nepodařilo potvrdit. Údaje zůstaly ve formuláři. Při výpadku spojení mohla být recenze uložena; před opakováním prosím chvíli vyčkejte.';
+    } catch (error) {
+      result.textContent = error.status === 429
+        ? 'Byl dosažen limit odesílání. Vyčkejte prosím a zkuste to později.'
+        : error.status === 403 ? 'Ověření proti spamu nebylo přijato. Dokončete nové ověření a zkuste to znovu.'
+        : error.status === 409 ? 'Tento pokus již nelze dokončit. Obnovte stránku; pokud jste recenzi už odeslali, kontaktujte nás před opakováním.'
+        : 'Přijetí se nepodařilo potvrdit. Dokončete nové ověření a použijte Dokončit odeslání. Stejný pokus nevytvoří další recenzi. Obnovením stránky možnost pokračovat ztratíte.';
     } finally {
+      protection.reset();
       sending = false;
       fields.disabled = false;
       for (const control of fields.querySelectorAll('input, textarea, select, button')) control.disabled = !!photoAttempt;
       submit.disabled = false;
+      document.getElementById('review-verification-start').disabled = false;
       submit.textContent = photoAttempt ? 'Dokončit odeslání' : 'Odeslat ke schválení';
       photos.lock(!!photoAttempt);
       form.removeAttribute('aria-busy');
@@ -178,7 +178,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   });
   more.addEventListener('click', loadReviews);
   window.addEventListener('pagehide', () => { window.ReviewPhotos.dispose(list); photos.reset(); });
-  fields.disabled = false;
-  notice.textContent = 'Recenze se odesílá ke kontrole. Zveřejnění není automatické.';
+  fields.disabled = !intakeReady;
+  notice.textContent = intakeReady ? 'Recenze se odesílá ke kontrole. Zveřejnění není automatické.' : 'Odesílání recenzí je dočasně nedostupné. Probíhá nastavení ochrany proti spamu.';
   loadReviews();
 })();
