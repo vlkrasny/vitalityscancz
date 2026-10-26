@@ -148,7 +148,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       data.set('receipt', photoAttempt.receipt);
       data.set('captcha', protection.token);
       photoAttempt.blobs.forEach((blob, index) => data.append('photos', blob, (index + 1) + '.jpg'));
-      const response = await request(config.url + '/functions/v1/submit-review', {
+      const response = await request('api/reviews', {
         method: 'POST', headers, body: data
       });
       if ((await response.json()).ok !== true) throw new Error('Invalid receipt');
@@ -158,7 +158,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
       updateRating();
       result.textContent = 'Děkujeme. Recenze byla přijata a čeká na schválení. Zatím není veřejná.';
     } catch (error) {
-      result.textContent = error.status === 429
+      result.textContent = error.status === 404
+        ? 'Odesílání recenzí zatím není dostupné. Služba pro jejich přijetí není nasazená. Další ověřování proti spamu tuto chybu nevyřeší; zkuste to prosím později.'
+        : error.status === 429
         ? 'Byl dosažen limit odesílání. Vyčkejte prosím a zkuste to později.'
         : error.status === 403 ? 'Ověření proti spamu nebylo přijato. Dokončete nové ověření a zkuste to znovu.'
         : error.status === 409 ? 'Tento pokus již nelze dokončit. Obnovte stránku; pokud jste recenzi už odeslali, kontaktujte nás před opakováním.'
